@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="ru" style="background:#0D0D0C">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Ember & Brass — стейк-хаус на открытом огне</title>
+<meta name="description" content="Современный стейк-хаус с открытым огнём, выдержанным мясом, авторской кухней и private dining. Забронируйте стол в Ember & Brass Atelier.">
+<link rel="canonical" href="https://emberandbrass.ru/">
+
+<!-- Open Graph -->
+<meta property="og:type" content="restaurant.restaurant">
+<meta property="og:site_name" content="Ember & Brass Atelier">
+<meta property="og:title" content="Ember & Brass — Искусство огня. Характер мяса.">
+<meta property="og:description" content="Современный стейк-хаус с открытым огнём, выдержанным мясом и private dining. Вечер, который хочется запомнить.">
+<meta property="og:image" content="https://emberandbrass.ru/assets/og-cover.jpg">
+<meta property="og:url" content="https://emberandbrass.ru/">
+<meta property="og:locale" content="ru_RU">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ember & Brass — стейк-хаус на открытом огне">
+<meta name="twitter:description" content="Искусство огня. Характер мяса. Стейк-хаус для вечеров, которые хочется запомнить.">
+<meta name="twitter:image" content="https://emberandbrass.ru/assets/og-cover.jpg">
+
+<meta name="robots" content="index, follow">
+<meta name="theme-color" content="#0D0D0C">
+<meta name="color-scheme" content="dark">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;500;600&display=swap">
+
+<link rel="stylesheet" href="SteakHouse.css">
+
+<!-- Restaurant Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Ember & Brass Atelier",
+  "image": "https://emberandbrass.ru/assets/og-cover.jpg",
+  "servesCuisine": ["Steakhouse", "Open Fire Grill", "Modern European"],
+  "priceRange": "₽₽₽₽",
+  "telephone": "+7-495-000-00-00",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Патриарший переулок, 7",
+    "addressLocality": "Москва",
+    "addressCountry": "RU"
+  },
+  "openingHoursSpecification": [
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Sunday"],
+      "opens": "13:00",
+      "closes": "00:00"
+    },
+    {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Friday","Saturday"],
+      "opens": "13:00",
+      "closes": "02:00"
+    }
+  ],
+  "sameAs": [
+    "https://instagram.com/emberandbrass",
+    "https://t.me/emberandbrass"
+  ]
+}
+</script>
+
+<!-- LocalBusiness Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Ember & Brass Atelier",
+  "image": "https://emberandbrass.ru/assets/og-cover.jpg",
+  "telephone": "+7-495-000-00-00",
+  "priceRange": "₽₽₽₽",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Патриарший переулок, 7",
+    "addressLocality": "Москва",
+    "addressCountry": "RU"
+  }
+}
+</script>
+
+<!-- FAQ Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Нужна ли предварительная бронь стола?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Рекомендуем бронировать стол заранее, особенно на вечер пятницы и субботы, а также для private dining."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Есть ли в ресторане private dining комната?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да, Ember & Brass располагает отдельным private dining пространством для приватных ужинов, деловых встреч и торжеств."
+      }
+    }
+  ]
+}
+</script>
+
+<!-- Breadcrumb Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Главная", "item": "https://emberandbrass.ru/" }
+  ]
+}
+</script>
+</head>
+<body class="is-loading" style="background:#0D0D0C">
+
+<!-- ============ PRELOADER ============ -->
+<div class="preloader" id="preloader" role="status" aria-live="polite" aria-label="Загрузка страницы">
+  <div class="preloader-embers" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <div class="preloader-inner">
+    <div class="preloader-mark" aria-hidden="true">
+      <svg class="preloader-mark-ring" viewBox="0 0 120 120" width="120" height="120">
+        <circle class="preloader-ring-track" cx="60" cy="60" r="54"></circle>
+        <circle class="preloader-ring-progress" cx="60" cy="60" r="54"></circle>
+      </svg>
+      <span class="preloader-mark-glyph">
+        <svg viewBox="0 0 48 56" width="30" height="35" fill="none">
+          <path class="preloader-flame-path" d="M24 2C24 2 12 16 12 30C12 40.5 17.5 46 24 46C30.5 46 36 40.5 36 30C36 22 31 17 29 12C29 18 25.5 20 23 20C19.5 20 18 16.5 18 13C18 9.5 20.5 6 24 2Z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </div>
+
+    <p class="preloader-word" aria-hidden="true">
+      <span class="preloader-letters">
+        <span style="--i:0">E</span><span style="--i:1">M</span><span style="--i:2">B</span><span style="--i:3">E</span><span style="--i:4">R</span>
+      </span>
+      <span class="preloader-amp">&amp;</span>
+      <span class="preloader-letters">
+        <span style="--i:5">B</span><span style="--i:6">R</span><span style="--i:7">A</span><span style="--i:8">S</span><span style="--i:9">S</span>
+      </span>
+    </p>
+
+    <div class="preloader-meta">
+      <span class="preloader-eyebrow">Разжигаем огонь</span>
+      <span class="preloader-percent" id="preloader-percent">0%</span>
+    </div>
+
+    <div class="preloader-bar" aria-hidden="true">
+      <span class="preloader-bar-fill" id="preloader-bar-fill"></span>
+    </div>
+  </div>
+
+  <div class="preloader-curtain preloader-curtain--l" aria-hidden="true"></div>
+  <div class="preloader-curtain preloader-curtain--r" aria-hidden="true"></div>
+</div>
+
+<a class="skip-link" href="#main">Перейти к содержанию</a>
+
+<!-- ============ CURSOR (decorative, hidden from AT) ============ -->
+<div class="ember-cursor" aria-hidden="true"></div>
+
+<!-- ============ NAVIGATION ============ -->
+<header class="site-header" data-state="top">
+  <div class="header-inner">
+    <a href="#hero" class="brand-mark">EMBER <span class="brand-amp">&amp;</span> BRASS</a>
+
+    <nav class="primary-nav" aria-label="Основная навигация">
+      <a href="#cuts">Меню</a>
+      <a href="#the-fire">Опыт</a>
+      <a href="#private-dining">Приватные обеды</a>
+      <a href="#philosophy">О нас</a>
+    </nav>
+
+    <div class="header-actions">
+      <button type="button" class="btn btn-ghost header-book" data-open-booking>Забронировать</button>
+      <button type="button" class="nav-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Открыть меню навигации">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<nav id="mobile-nav" class="mobile-nav" aria-label="Мобильная навигация" hidden>
+  <a href="#cuts">Меню</a>
+  <a href="#the-fire">Опыт</a>
+  <a href="#the-cellar">Погреб</a>
+  <a href="#the-room">Пространство</a>
+  <a href="#private-dining">Приватные обеды</a>
+  <a href="#philosophy">О нас</a>
+  <a href="#reviews">Гости</a>
+  <a href="#reservation">Контакты</a>
+  <button type="button" class="btn btn-primary" data-open-booking>Забронировать стол</button>
+</nav>
+
+<main id="main">
+
+  <!-- ============ SLIDE 01 — HERO ============ -->
+  <section class="scene scene-hero" id="hero" aria-label="Главный экран">
+    <div class="scene-media" data-parallax="0.25">
+      <picture>
+        <source media="(max-width: 767px)" srcset="img/1.png">
+        <img
+          src="img/1.png"
+          alt="Крупный стейк на раскалённой чугунной решётке в тёмном пространстве, мягкое пламя и лёгкий дым"
+          fetchpriority="high"
+          decoding="async"
+          class="hero-img reveal-mask"
+        >
+      </picture>
+      <div class="scene-scrim scene-scrim--hero" aria-hidden="true"></div>
+      <div class="ember-glow ember-glow--hero" aria-hidden="true"></div>
+    </div>
+
+    <div class="scene-content hero-content">
+      <p class="eyebrow fx-breathe" data-delay="0">Стейк-хаус и атрибут открытого огня</p>
+      <h1 class="display-xl fx-breathe" data-delay="120">
+        Искусство огня.<br>
+        <em>Характер мяса.</em>
+      </h1>
+      <p class="lede fx-breathe" data-delay="260">Стейк-хаус для вечеров, которые хочется запомнить.</p>
+
+      <div class="hero-actions fx-breathe" data-delay="380">
+        <button type="button" class="btn btn-primary btn-magnetic" data-open-booking>
+          <span>Забронировать стол</span>
+        </button>
+        <a href="#cuts" class="btn btn-outline btn-magnetic">
+          <span>Исследовать меню</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="scroll-indicator" aria-hidden="true">
+      <span class="scroll-indicator-line"></span>
+      <span class="scroll-indicator-text">Листайте вниз</span>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 02 — PHILOSOPHY ============ -->
+  <section class="scene scene-philosophy" id="philosophy" aria-label="Философия ресторана">
+    <div class="scene-inner scene-inner--split">
+      <div class="scene-text" data-reveal>
+        <p class="eyebrow">Философия</p>
+        <h2 class="display-lg">Всё начинается<br>с&nbsp;огня.</h2>
+        <p class="body-lg">
+          Мы не прячем главное действие за кухонными дверями.
+        </p>
+        <p class="body-md muted">
+          Огонь — часть пространства.<br>
+          Мясо — главный материал.<br>
+          Время — один из ингредиентов.
+        </p>
+
+        <dl class="fact-row">
+          <div class="fact-item">
+            <dt>Метод</dt>
+            <dd>Открытый огонь</dd>
+          </div>
+          <div class="fact-item">
+            <dt>Выдержка</dt>
+            <dd>Сухая выдержка</dd>
+          </div>
+          <div class="fact-item">
+            <dt>Финиш</dt>
+            <dd>Ручная подача</dd>
+          </div>
+        </dl>
+      </div>
+
+      <figure class="scene-figure scene-figure--tall" data-reveal data-reveal-delay="150">
+        <img
+          src="img/2.png"
+          alt="Открытый гриль с раскалёнными углями и живым пламенем"
+          loading="lazy"
+          decoding="async"
+        >
+        <span class="ember-line" aria-hidden="true"></span>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 03 — SIGNATURE CUTS ============ -->
+  <section class="scene scene-cuts" id="cuts" aria-label="Фирменные блюда">
+    <div class="scene-header" data-reveal>
+      <p class="eyebrow">Фирменные отрубы</p>
+      <h2 class="display-lg">Музей отрубов.</h2>
+      <p class="body-md muted max-w-prose">Каждый стейк — самостоятельный объект. Происхождение, выдержка и характер, которые видно до первого разреза.</p>
+    </div>
+
+    <div class="cuts-gallery" role="list" aria-label="Список фирменных стейков">
+
+      <article class="cut-card" role="listitem" data-reveal>
+        <button type="button" class="cut-card-trigger" data-cut="ribeye" aria-haspopup="dialog" aria-controls="cut-dialog" aria-label="Открыть подробности блюда Рибай">
+          <figure class="cut-figure">
+            <img src="img/3.png" alt="Рибай стейк на подаче, тёмная тарелка, крупный план текстуры мяса" loading="lazy" decoding="async">
+            <span class="cut-sweep" aria-hidden="true"></span>
+          </figure>
+          <div class="cut-meta">
+            <h3 class="cut-name">Рибай</h3>
+            <p class="cut-origin">USDA Prime · 300&nbsp;г</p>
+            <p class="cut-aging">Сухая выдержка 35&nbsp;дней</p>
+            <p class="cut-price">3&nbsp;900&nbsp;₽</p>
+          </div>
+          <span class="cut-cta">Открыть блюдо <span aria-hidden="true">→</span></span>
+        </button>
+      </article>
+
+      <article class="cut-card" role="listitem" data-reveal data-reveal-delay="90">
+        <button type="button" class="cut-card-trigger" data-cut="tomahawk" aria-haspopup="dialog" aria-controls="cut-dialog" aria-label="Открыть подробности блюда Томагавк">
+          <figure class="cut-figure">
+            <img src="img/4.png" alt="Стейк Томагавк на кости на раскалённой решётке" loading="lazy" decoding="async">
+            <span class="cut-sweep" aria-hidden="true"></span>
+          </figure>
+          <div class="cut-meta">
+            <h3 class="cut-name">Томагавк</h3>
+            <p class="cut-origin">Black Angus · 900&nbsp;г</p>
+            <p class="cut-aging">Сухая выдержка 28&nbsp;дней</p>
+            <p class="cut-price">8&nbsp;400&nbsp;₽</p>
+          </div>
+          <span class="cut-cta">Открыть блюдо <span aria-hidden="true">→</span></span>
+        </button>
+      </article>
+
+      <article class="cut-card" role="listitem" data-reveal data-reveal-delay="180">
+        <button type="button" class="cut-card-trigger" data-cut="filet" aria-haspopup="dialog" aria-controls="cut-dialog" aria-label="Открыть подробности блюда Филе-миньон">
+          <figure class="cut-figure">
+            <img src="img/5.png" alt="Филе-миньон, крупный план разреза мяса с соком" loading="lazy" decoding="async">
+            <span class="cut-sweep" aria-hidden="true"></span>
+          </figure>
+          <div class="cut-meta">
+            <h3 class="cut-name">Филе-миньон</h3>
+            <p class="cut-origin">USDA Prime · 220&nbsp;г</p>
+            <p class="cut-aging">Сухая выдержка 21&nbsp;день</p>
+            <p class="cut-price">4&nbsp;600&nbsp;₽</p>
+          </div>
+          <span class="cut-cta">Открыть блюдо <span aria-hidden="true">→</span></span>
+        </button>
+      </article>
+
+      <article class="cut-card" role="listitem" data-reveal data-reveal-delay="270">
+        <button type="button" class="cut-card-trigger" data-cut="nyStrip" aria-haspopup="dialog" aria-controls="cut-dialog" aria-label="Открыть подробности блюда Нью-Йорк стрип">
+          <figure class="cut-figure">
+            <img src="img/6.png" alt="Нью-Йорк стрип стейк с тёмной корочкой на деревянной доске" loading="lazy" decoding="async">
+            <span class="cut-sweep" aria-hidden="true"></span>
+          </figure>
+          <div class="cut-meta">
+            <h3 class="cut-name">Нью-Йорк стрип</h3>
+            <p class="cut-origin">USDA Prime · 280&nbsp;г</p>
+            <p class="cut-aging">Сухая выдержка 30&nbsp;дней</p>
+            <p class="cut-price">4&nbsp;100&nbsp;₽</p>
+          </div>
+          <span class="cut-cta">Открыть блюдо <span aria-hidden="true">→</span></span>
+        </button>
+      </article>
+
+    </div>
+
+    <div class="cuts-scrollbar" aria-hidden="true">
+      <div class="cuts-scrollbar-track">
+        <div class="cuts-scrollbar-thumb" id="cuts-scrollbar-thumb"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 04 — THE FIRE ============ -->
+  <section class="scene scene-thefire" id="the-fire" aria-label="Открытый огонь">
+    <div class="scene-media" data-parallax="0.18">
+      <img
+        src="img/7.png"
+        alt="Мясо готовится над открытым живым огнём, языки пламени в темноте"
+        loading="lazy"
+        decoding="async"
+      >
+      <div class="scene-scrim scene-scrim--fire" aria-hidden="true"></div>
+      <div class="ember-glow ember-glow--fire" aria-hidden="true"></div>
+    </div>
+
+    <div class="scene-content thefire-content" data-reveal>
+      <p class="eyebrow">Огонь</p>
+      <h2 class="display-lg">Некоторые вкусы<br>невозможно объяснить.<br><em>Их нужно попробовать.</em></h2>
+
+      <dl class="fire-stats">
+        <div>
+          <dt>Метод</dt>
+          <dd>Открытый огонь</dd>
+        </div>
+        <div>
+          <dt>Температура</dt>
+          <dd>850&nbsp;°C</dd>
+        </div>
+        <div>
+          <dt>Финиш</dt>
+          <dd>Ручная подача</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 05 — THE CELLAR ============ -->
+  <section class="scene scene-cellar" id="the-cellar" aria-label="Винный погреб и бар">
+    <div class="scene-header" data-reveal>
+      <p class="eyebrow">Погреб</p>
+      <h2 class="display-lg">Вино должно<br>продолжать разговор.</h2>
+    </div>
+
+    <div class="cellar-gallery">
+      <figure class="cellar-item" data-reveal data-parallax="0.08">
+        <img src="img/8.png" alt="Бутылки красного вина в тёмном винном погребе" loading="lazy" decoding="async">
+        <figcaption>
+          <span class="cellar-label">Красное вино</span>
+          <span class="cellar-sub">Каберне Совиньон</span>
+        </figcaption>
+      </figure>
+
+      <figure class="cellar-item" data-reveal data-reveal-delay="120" data-parallax="0.14">
+        <img src="img/9.png" alt="Бокал красного вина на тёмном фоне с мягким светом" loading="lazy" decoding="async">
+        <figcaption>
+          <span class="cellar-label">Бордо</span>
+          <span class="cellar-sub">Выборка Grand Cru</span>
+        </figcaption>
+      </figure>
+
+      <figure class="cellar-item" data-reveal data-reveal-delay="240" data-parallax="0.1">
+        <img src="img/10.png" alt="Крепкий алкогольный напиток в стакане со льдом на барной стойке" loading="lazy" decoding="async">
+        <figcaption>
+          <span class="cellar-label">Выдержка в бочке</span>
+          <span class="cellar-sub">Коктейли и виски</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 06 — THE ROOM ============ -->
+  <section class="scene scene-room" id="the-room" aria-label="Интерьер ресторана">
+    <div class="room-media">
+      <img
+        id="room-image"
+        src="img/11.png"
+        alt="Тёмный интерьер ресторана: орех, камень, латунь и открытая кухня"
+        loading="lazy"
+        decoding="async"
+      >
+      <div class="scene-scrim scene-scrim--room" aria-hidden="true"></div>
+    </div>
+
+    <div class="room-content" data-reveal>
+      <p class="eyebrow" data-reveal>Пространство</p>
+      <h2 class="display-lg">Пространство создано так,<br>чтобы вечер начинался<br>ещё до первого блюда.</h2>
+
+      <div class="room-nav" role="group" aria-label="Выбор зоны ресторана">
+        <button type="button" class="room-nav-btn is-active" data-room="main">Основной зал</button>
+        <button type="button" class="room-nav-btn" data-room="private">Приватный зал</button>
+        <button type="button" class="room-nav-btn" data-room="bar">Бар</button>
+        <button type="button" class="room-nav-btn" data-room="lounge">Лаундж</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 07 — PRIVATE DINING ============ -->
+  <section class="scene scene-private" id="private-dining" aria-label="Приватные обеды">
+    <div class="scene-inner scene-inner--split scene-inner--reverse">
+      <div class="scene-text" data-reveal>
+        <p class="eyebrow">Приватные обеды</p>
+        <h2 class="display-lg">Для вечеров,<br>которые не хочется<br>делить с&nbsp;остальным городом.</h2>
+
+        <ul class="occasion-list">
+          <li>Приватный ужин</li>
+          <li>Деловой ужин</li>
+          <li>Юбилей</li>
+          <li>Праздник</li>
+          <li>Стол шефа</li>
+        </ul>
+
+        <button type="button" class="btn btn-outline btn-magnetic" data-open-booking data-booking-type="private">
+          <span>Запросить приватный ужин</span>
+        </button>
+      </div>
+
+      <figure class="scene-figure scene-figure--tall" data-reveal data-reveal-delay="150">
+        <img
+          src="img/15.png"
+          alt="Приватный обеденный зал с сервированным столом и мягким тёплым светом"
+          loading="lazy"
+          decoding="async"
+        >
+        <span class="ember-line" aria-hidden="true"></span>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 08 — THE CRAFT ============ -->
+  <section class="scene scene-craft" id="the-craft" aria-label="Мастерство и процесс">
+    <div class="scene-header" data-reveal>
+      <p class="eyebrow">Мастерство</p>
+      <h2 class="display-lg">Мы контролируем путь продукта<br>от выбора до последнего<br>движения ножа.</h2>
+    </div>
+
+    <div class="craft-grid">
+      <figure class="craft-photo craft-photo--a" data-reveal>
+        <img src="img/16.png" alt="Руки шеф-повара разделывают мясо острым ножом" loading="lazy" decoding="async">
+      </figure>
+      <figure class="craft-photo craft-photo--b" data-reveal data-reveal-delay="100">
+        <img src="img/17.png" alt="Крупный план ножа, разрезающего сочный стейк" loading="lazy" decoding="async">
+      </figure>
+      <figure class="craft-photo craft-photo--c" data-reveal data-reveal-delay="200">
+        <img src="img/18.png" alt="Мясо на раскалённой решётке гриля крупным планом" loading="lazy" decoding="async">
+      </figure>
+
+      <dl class="craft-facts" data-reveal data-reveal-delay="300">
+        <div><dt>Отбор</dt><dd>Отборные отрубы</dd></div>
+        <div><dt>Выдержка</dt><dd>35+ дней сухой выдержки</dd></div>
+        <div><dt>Приготовление</dt><dd>Открытый огонь</dd></div>
+        <div><dt>Подача</dt><dd>Ручная подача</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 09 — EXPERIENCE / REVIEWS ============ -->
+  <section class="scene scene-reviews" id="reviews" aria-label="Отзывы гостей">
+    <div class="review-content" data-reveal>
+      <p class="eyebrow">Впечатления</p>
+
+      <ul class="review-carousel-track">
+        <li class="review-card">
+          <blockquote class="review-quote">
+            <p>«Место, куда приходишь на ужин, а&nbsp;уходишь с&nbsp;ощущением, что прожил целый вечер.»</p>
+            <footer>— Александр М.</footer>
+          </blockquote>
+        </li>
+        <li class="review-card">
+          <blockquote class="review-quote">
+            <p>«Сервис на уровне лучших московских ресторанов. Каждая деталь продумана.»</p>
+            <footer>— Екатерина С.</footer>
+          </blockquote>
+        </li>
+        <li class="review-card">
+          <blockquote class="review-quote">
+            <p>«Стейк готовили прямо на наших глазах. Такого шоу давно не видел.»</p>
+            <footer>— Игорь Р.</footer>
+          </blockquote>
+        </li>
+        <li class="review-card">
+          <blockquote class="review-quote">
+            <p>«Дым, свет и звук ножа по дереву — этот вечер запомнился как отдельная история.»</p>
+            <footer>— Мария К.</footer>
+          </blockquote>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ SLIDE 10 — RESERVATION / CTA ============ -->
+  <section class="scene scene-reservation" id="reservation" aria-label="Бронирование стола">
+    <div class="scene-media" data-parallax="0.15">
+      <img
+        src="img/19.png"
+        alt="Тлеющие угли и мягкое пламя в темноте, крупный план"
+        loading="lazy"
+        decoding="async"
+      >
+      <div class="scene-scrim scene-scrim--final" aria-hidden="true"></div>
+      <div class="ember-glow ember-glow--final" aria-hidden="true"></div>
+    </div>
+
+    <div class="scene-content reservation-content" data-reveal>
+      <h2 class="display-xl">Ваш стол<br>уже ждёт.</h2>
+      <p class="lede">Выберите вечер.<br>Остальное мы возьмём на себя.</p>
+
+      <div class="hero-actions">
+        <button type="button" class="btn btn-primary btn-magnetic" data-open-booking>
+          <span>Забронировать стол</span>
+        </button>
+        <a href="tel:+74950000000" class="btn btn-outline btn-magnetic">
+          <span>Позвонить в ресторан</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer" id="contacts">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <p class="brand-mark brand-mark--footer">EMBER <span class="brand-amp">&amp;</span> BRASS</p>
+      <p class="footer-tagline">Искусство огня. Характер мяса.</p>
+    </div>
+
+    <div class="footer-col">
+      <h3>Адрес</h3>
+      <address>
+        Патриарший переулок, 7 Москва
+      </address>
+    </div>
+
+    <div class="footer-col">
+      <h3>Время работы</h3>
+      <p>
+        <time datetime="Mo-Su">Пн–Чт, Вс: 13:00–00:00</time><br>
+        <time datetime="Fr-Sa">Пт–Сб: 13:00–02:00</time>
+      </p>
+    </div>
+
+    <div class="footer-col">
+      <h3>Контакты</h3>
+      <p>
+        <a href="tel:+74950000000">+7&nbsp;495&nbsp;000-00-00</a><br>
+        <a href="https://instagram.com/emberandbrass" target="_blank" rel="noopener noreferrer">Instagram</a><br>
+        <a href="https://t.me/emberandbrass" target="_blank" rel="noopener noreferrer">Telegram</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>&copy; 2026 Ember &amp; Brass Atelier. Все права защищены.</p>
+  </div>
+</footer>
+
+<!-- ============ CUT DETAIL DIALOG ============ -->
+<dialog class="cut-dialog" id="cut-dialog" aria-labelledby="cut-dialog-title">
+  <div class="cut-dialog-inner">
+    <button type="button" class="booking-close" data-close-cut aria-label="Закрыть карточку блюда">
+      <span aria-hidden="true">&times;</span>
+    </button>
+
+    <figure class="cut-dialog-media">
+      <img id="cut-dialog-img" src="" alt="">
+    </figure>
+
+    <div class="cut-dialog-body">
+      <p class="eyebrow" id="cut-dialog-origin">&nbsp;</p>
+      <h2 class="display-md" id="cut-dialog-title">&nbsp;</h2>
+      <p class="cut-dialog-desc" id="cut-dialog-desc">&nbsp;</p>
+
+      <dl class="cut-dialog-facts">
+        <div>
+          <dt>Выдержка</dt>
+          <dd id="cut-dialog-aging">&nbsp;</dd>
+        </div>
+        <div>
+          <dt>Вес</dt>
+          <dd id="cut-dialog-weight">&nbsp;</dd>
+        </div>
+        <div>
+          <dt>Подача</dt>
+          <dd id="cut-dialog-serve">&nbsp;</dd>
+        </div>
+      </dl>
+
+      <div class="cut-dialog-footer">
+        <span class="cut-dialog-price" id="cut-dialog-price">&nbsp;</span>
+        <button type="button" class="btn btn-primary" data-open-booking data-close-cut>
+          <span>Забронировать стол</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<!-- ============ BOOKING DIALOG ============ -->
+<dialog class="booking-dialog" id="booking-dialog" aria-labelledby="booking-title">
+  <div class="booking-inner">
+    <button type="button" class="booking-close" data-close-booking aria-label="Закрыть форму бронирования">
+      <span aria-hidden="true">&times;</span>
+    </button>
+
+    <p class="eyebrow">Бронирование</p>
+    <h2 class="display-md" id="booking-title">Подтвердите вечер.</h2>
+
+    <form class="booking-form" id="booking-form" novalidate>
+      <div class="form-row">
+        <div class="form-field">
+          <label for="field-date">Дата</label>
+          <input type="date" id="field-date" name="date" required>
+        </div>
+        <div class="form-field">
+          <label for="field-time">Время</label>
+          <input type="time" id="field-time" name="time" required>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-field">
+          <label for="field-guests">Гости</label>
+          <select id="field-guests" name="guests" required>
+            <option value="">Количество</option>
+            <option value="1">1 гость</option>
+            <option value="2">2 гостя</option>
+            <option value="3">3 гостя</option>
+            <option value="4">4 гостя</option>
+            <option value="5">5 гостей</option>
+            <option value="6+">6 и более</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="field-phone">Телефон</label>
+          <input type="tel" id="field-phone" name="phone" placeholder="+7 (___) ___-__-__" required>
+        </div>
+      </div>
+
+      <div class="form-field">
+        <label for="field-name">Имя</label>
+        <input type="text" id="field-name" name="name" required>
+      </div>
+
+      <div class="form-field">
+        <label for="field-comment">Комментарий <span class="optional">(необязательно)</span></label>
+        <textarea id="field-comment" name="comment" rows="2" placeholder="Особые пожелания, повод, аллергии…"></textarea>
+      </div>
+
+      <input type="hidden" id="field-type" name="type" value="table">
+
+      <button type="submit" class="btn btn-primary btn-full">
+        <span>Подтвердить бронирование</span>
+      </button>
+
+      <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+    </form>
+  </div>
+</dialog>
+
+<script src="SteakHouse.js" defer></script>
+</body>
+</html>
